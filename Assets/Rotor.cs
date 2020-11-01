@@ -5,7 +5,6 @@ using UnityEngine;
 public class Rotor : MonoBehaviour
 {
     public GameObject target;
-    public GameObject centre;
     public float speed = 20f;
     public float selfSpeed = 120f;
     // private fload angle;
@@ -19,7 +18,7 @@ public class Rotor : MonoBehaviour
     void Update()
     {
         target.transform.RotateAround(target.transform.position, Vector3.forward, selfSpeed * Time.deltaTime);
-        target.transform.RotateAround(centre.transform.position, Vector3.forward, speed * Time.deltaTime);
+        target.transform.RotateAround(transform.position, Vector3.forward, speed * Time.deltaTime);
 
     }
 }
