@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     private Vector3 lastPosition;
 
+    public float angleSpeed = 1;
+    private float angle = 1.5f;
+    private Vector3 orientation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +24,12 @@ public class PlayerController : MonoBehaviour
     {
         float dy = Input.GetAxis("Vertical");
         float dx = Input.GetAxis("Horizontal");
-        transform.position += new Vector3(dx, dy, 0) * Time.deltaTime * speed;
+        angle -= dx * Time.deltaTime * angleSpeed;
+        orientation.x = Mathf.Cos(angle);
+        orientation.y = Mathf.Sin(angle);
+        orientation.Normalize();
+        transform.rotation = Quaternion.Euler(0, 0, angle*180/Mathf.PI - 90);
+        transform.position += orientation * dy * Time.deltaTime * speed;
 
         if (Input.GetButtonDown("Fire1")) {
             Vector3 direction = (transform.position - lastPosition);
