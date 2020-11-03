@@ -623,7 +623,7 @@ Transform:
   m_GameObject: {fileID: 594719543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5, y: -3.2, z: 0}
-  m_LocalScale: {x: 0.2849, y: 0.2849, z: 0.2849}
+  m_LocalScale: {x: 0.12464376, y: 0.2849, z: 0.2849}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -643,6 +643,7 @@ MonoBehaviour:
   speed: 10
   bulletPrefab: {fileID: 3956808436440913443, guid: c44e7172e6ee54596b691c854e2d845f,
     type: 3}
+  angleSpeed: 5
 --- !u!58 &594719547
 CircleCollider2D:
   m_ObjectHideFlags: 0

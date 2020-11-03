@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 
     public float speed;
     [SerializeField] private GameObject bulletPrefab;
-    private Vector3 lastPosition;
 
     public float angleSpeed = 1;
     private float angle = 1.5f;
@@ -16,7 +15,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lastPosition = transform.position - Vector3.up;
     }
 
     // Update is called once per frame
@@ -32,21 +30,12 @@ public class PlayerController : MonoBehaviour
         transform.position += orientation * dy * Time.deltaTime * speed;
 
         if (Input.GetButtonDown("Fire1")) {
-            Vector3 direction = (transform.position - lastPosition);
-            Debug.Log("Position " + transform.position.ToString("F4"));
-            Debug.Log("LastPosition " + lastPosition.ToString("F4"));
-            Debug.Log(direction.ToString("F4"));
-            direction.Normalize();
-            Debug.Log(direction.ToString("F4"));
-
-            Vector3 start = transform.position + 5 * direction;
+            Vector3 start = transform.position + 0.1f * orientation;
             Debug.Log("start " + start.ToString("F4"));
             GameObject bullet = Instantiate(bulletPrefab) as GameObject;
             bullet.transform.position = start;
-            bullet.GetComponent<Rigidbody2D>().velocity = direction * 0.5f;
-        }
-        if (Vector3.Distance(lastPosition, transform.position) > 0.1) {
-            lastPosition = transform.position;
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle*180/Mathf.PI - 135);
+            bullet.GetComponent<Rigidbody2D>().velocity = orientation * 15f;
         }
     }
 }
